@@ -9,14 +9,14 @@ import fetch from 'node-fetch'
 
 const defaultMenu = {
 before: ` `.trimStart(),
-header: '╭━━━━━ 〘 %category 〙 ',
+header: '╭━━━━━ *〘 %category 〙* ',
 body: `┃ %cmd %isPremium %islimit`,
 footer: `╰━━━━━━━━━━━━⬣\n`,
 after: ` `,
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 
- /********** TIME *******/
+ /**************************** TIME *********************/
  
 let wib = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 let wibh = moment.tz('Asia/Jakarta').format('HH')
@@ -27,7 +27,7 @@ let wita = moment.tz('Asia/Makassar').format('HH:mm:ss')
 let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
  
  let mode = global.opts['self'] ? 'Private' : 'Publik'
-let package = JSON.parse(await promises.readFile(join(dirname, '../package.json')).catch( => ({}))) || {}
+let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 let { age, exp, limit, level, role, registered, money} = global.db.data.users[m.sender]
 let { min, xp, max } = xpRange(level, global.multiplier)
 let name = await conn.getName(m.sender)
@@ -306,42 +306,42 @@ let usrs = db.data.users[m.sender]
 let fkontak = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': wm, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${wm},;;;\nFN:${wm},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabell:Ponsel\nEND:VCARD`, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg'), thumbnail: fs.readFileSync('./thumbnail.jpg'),sendEphemeral: true}}}
 let tagnya = `@${m.sender.split`@`[0]}`
 
-/let tek = `${ucapan()} @${m.sender.split`@`[0]}*
+/*let tek = `*${ucapan()} @${m.sender.split`@`[0]}*
 ☰⃟⃟ᭁ═━┈━┈༓
 ┯┩
 ┡────────────┈ ⳹
-┠━☰⃟⃟ᭁ「 U s e rI n f o 克 」
-┋↬✗• ɴᴀᴍᴇ: ${usrs.registered ? usrs.name : conn.getName(m.sender)}
-║↬✗• ᴛᴀɢs: @${m.sender.split`@`[0]}
-╏↬✗• sᴛᴀᴛᴜs: ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
-╎↬✗• ᴘʀᴇᴍɪᴜᴍ: ${usrs.premiumTime > 1 ? 'Yes': 'No'}
+┠━☰⃟⃟ᭁ「 *U s e rI n f o 克* 」
+┋↬✗• *ɴᴀᴍᴇ:* ${usrs.registered ? usrs.name : conn.getName(m.sender)}
+║↬✗• *ᴛᴀɢs:* @${m.sender.split`@`[0]}
+╏↬✗• *sᴛᴀᴛᴜs:* ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
+╎↬✗• *ᴘʀᴇᴍɪᴜᴍ:* ${usrs.premiumTime > 1 ? 'Yes': 'No'}
 ╅╌┉┈┈╳
 ╭╼╼╼╼╼╼╼╼╺╴╴╳
-┊ 「 S t a t u sI n f o 比 」
-┊⧠ ᴜᴘᴛɪᴍᴇ: ${mpt}
-┊⧠ ᴛɪᴍᴇ: ${moment.tz('Asia/Jakarta').format('HH')} H${moment.tz('Asia/Jakarta').format('mm')} M${moment.tz('Asia/Jakarta').format('ss')} S
-┊⧠ ᴜsᴇʀs: ${Object.keys(global.db.data.users).length}
-┊⧠ ʟɪᴍɪᴛ: ${usrs.limit}
-┊⧠ ʟᴇᴠᴇʟ: ${usrs.level}
-┊⧠ ʀᴏʟᴇ: ${usrs.role}${usrs.premiumTime > 1 ? `
+┊ 「 *S t a t u sI n f o 比* 」
+┊⧠ *ᴜᴘᴛɪᴍᴇ:* ${mpt}
+┊⧠ *ᴛɪᴍᴇ:* ${moment.tz('Asia/Jakarta').format('HH')} H${moment.tz('Asia/Jakarta').format('mm')} M${moment.tz('Asia/Jakarta').format('ss')} S
+┊⧠ *ᴜsᴇʀs:* ${Object.keys(global.db.data.users).length}
+┊⧠ *ʟɪᴍɪᴛ:* ${usrs.limit}
+┊⧠ *ʟᴇᴠᴇʟ:* ${usrs.level}
+┊⧠ *ʀᴏʟᴇ:* ${usrs.role}${usrs.premiumTime > 1 ? `
 ┗––––––––––––––––––✥
-┊↬✗• ᴇxᴘɪʀᴇᴅ ᴘʀᴇᴍɪᴜᴍ:
+┊↬✗• *ᴇxᴘɪʀᴇᴅ ᴘʀᴇᴍɪᴜᴍ:*
 ${clockStringP(usrs.premiumTime - new Date())}` : ''}
 `*/
-let con = `Halo ${tagnya}
+let con = `*Halo ${tagnya}*
 
 
 ╭┄───────────┄⬣
-││ ɴᴀᴍᴇ : ${usrs.registered ? usrs.name : conn.getName(m.sender)}
-││ ʟᴇᴠᴇʟ: ${usrs.level}
-││ ᴛɪᴇʀ: ${usrs.role}
-││ ʟɪᴍɪᴛ: ${usrs.limit}
-││ sᴛᴀᴛᴜs: ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
-││ ᴘʀᴇᴍɪᴜᴍ: ${usrs.premiumTime > 1 ? 'Ya': 'Tidak'}
+││ *ɴᴀᴍᴇ* : ${usrs.registered ? usrs.name : conn.getName(m.sender)}
+││ *ʟᴇᴠᴇʟ:* ${usrs.level}
+││ *ᴛɪᴇʀ:* ${usrs.role}
+││ *ʟɪᴍɪᴛ:* ${usrs.limit}
+││ *sᴛᴀᴛᴜs:* ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
+││ *ᴘʀᴇᴍɪᴜᴍ:* ${usrs.premiumTime > 1 ? 'Ya': 'Tidak'}
 │╰┄──────────┄⬣
-╰╮      YOUR INFO
+╰╮      *YOUR INFO*
    ├┄───────────⬣
-   │ LIST MENU BELOW
+   │ *LIST MENU BELOW*
    ╰┄┄┄⬣
 `
 let hariRayaramadan = new Date('April 21, 2023 23:59:59') 
@@ -352,20 +352,20 @@ let hariRayaramadan = new Date('April 21, 2023 23:59:59')
      let menitt = Math.floor( lebih % (1000 * 60 * 60) / (1000 * 60)) 
      let detikk = Math.floor( lebih % (1000 * 60) / 1000) 
 let tett = `╭────────────⬣
-╰╮ ${moment.tz('Asia/Jakarta').format('HH')} H${moment.tz('Asia/Jakarta').format('mm')} M${moment.tz('Asia/Jakarta').format('ss')} S
+╰╮ *${moment.tz('Asia/Jakarta').format('HH')} H${moment.tz('Asia/Jakarta').format('mm')} M${moment.tz('Asia/Jakarta').format('ss')} S*
    ╰───────────⬣
    ╭────────────⬣
-   │ UPTIME ${mpt}
+   │ *UPTIME ${mpt}*
    ╰────────────⬣
    ╭───────────⬣ 
-╭╯ ${dateIslamic}
+╭╯ *${dateIslamic}*
 ╰────────────⬣
 ╭────────────⬣
 │ 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 𝗙𝗕𝗠
-╰╮ https://t.me/Christina_OWN
+╰╮ *https://t.me/Christina_OWN*
    ╰⬣
 `
-let fot = `NOTE: Menemukan Error? Ketik #report
+let fot = `*_NOTE: Menemukan Error? Ketik #report_*
 `
 const listMessage = {
 text: tett,
@@ -518,30 +518,30 @@ ptt: false, seconds: 0,contextInfo: {
 let ownernya = `@${nomorown.split`@`[0]}`
 let almenu = `
 ╭──────────⬣
-│ Hallo ${tagnya}
+│ *Hallo ${tagnya}*
 ╰─────────────────╮
 ╭─────────────────╯
-│              USER INFO
+│              *USER INFO*
 ├─────────────────⬣
-├╮ ɴᴀᴍᴇ : ${usrs.registered ? usrs.name : conn.getName(m.sender)}
-┊│ ʟᴇᴠᴇʟ: ${usrs.level}
-┊│ ᴛɪᴇʀ: ${usrs.role}
-┊│ ʟɪᴍɪᴛ: ${usrs.limit}
-┊│ sᴛᴀᴛᴜs: ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
-┊│ ᴘʀᴇᴍɪᴜᴍ: ${usrs.premiumTime > 1 ? 'Ya': 'Tidak'}
+├╮ *ɴᴀᴍᴇ* : ${usrs.registered ? usrs.name : conn.getName(m.sender)}
+┊│ *ʟᴇᴠᴇʟ:* ${usrs.level}
+┊│ *ᴛɪᴇʀ:* ${usrs.role}
+┊│ *ʟɪᴍɪᴛ:* ${usrs.limit}
+┊│ *sᴛᴀᴛᴜs:* ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
+┊│ *ᴘʀᴇᴍɪᴜᴍ:* ${usrs.premiumTime > 1 ? 'Ya': 'Tidak'}
 ┊╰─┬──────────────⬣
-┊╭─╯        BOT INFO
-┊│ ᴛᴏᴛᴀʟ: ${totalf} ғɪᴛᴜʀ
-┊│ ᴠᴇʀsɪᴏɴ: V.49
-┊│ ʀᴇʟᴇᴀsᴇ: 25 ɴᴏᴠᴇᴍʙᴇʀ 2021
-┊│ ᴏᴡɴᴇʀ: @${nomorown2.split`@`[0]}
-┊│ ᴍᴏᴅᴇ: ${mode}
-┊│ ᴘʟᴀᴛғᴏʀᴍ: ${platform}
-┊│ ᴛʏᴘᴇ: Nodejs 
-┊│ ʙᴀɪʟᴇʏs: Multi Device
-┊│ ᴘʀᴇғɪx: ${_p}
-┊│ ᴜᴘᴛɪᴍᴇ: ${mpt} 
-├╯ ᴅᴀᴛᴀʙᴀsᴇ: ${totalreg}
+┊╭─╯        *BOT INFO*
+┊│ *ᴛᴏᴛᴀʟ:* ${totalf} ғɪᴛᴜʀ
+┊│ *ᴠᴇʀsɪᴏɴ:* V.49
+┊│ *ʀᴇʟᴇᴀsᴇ:* 25 ɴᴏᴠᴇᴍʙᴇʀ 2021
+┊│ *ᴏᴡɴᴇʀ:* @${nomorown2.split`@`[0]}
+┊│ *ᴍᴏᴅᴇ:* ${mode}
+┊│ *ᴘʟᴀᴛғᴏʀᴍ:* ${platform}
+┊│ *ᴛʏᴘᴇ:* Nodejs 
+┊│ *ʙᴀɪʟᴇʏs:* Multi Device
+┊│ *ᴘʀᴇғɪx:* ${_p}
+┊│ *ᴜᴘᴛɪᴍᴇ:* ${mpt} 
+├╯ *ᴅᴀᴛᴀʙᴀsᴇ:* ${totalreg}
 ╰─────────────────⬣
 `
 let nomorwa = '0'
@@ -552,13 +552,13 @@ let d3= 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 let d4 = 'application/pdf'
 let d5 = 'text/rtf'
 let td = `${pickRandom([d1,d2,d3,d4,d5])}`
-let ᴛᴇs = `Powered By @${nomorwa.split`@`[0]}\n*Creator Bot @${nomorowm1.split`@`[0]}*\n𝗗𝗔𝗧𝗘: ${week} ${date}\n𝗧𝗜𝗠𝗘: ${wktuwib}`
+let ᴛᴇs = `*_Powered By @${nomorwa.split`@`[0]}_*\n*_Creator Bot @${nomorowm1.split`@`[0]}_*\n𝗗𝗔𝗧𝗘: ${week} ${date}\n𝗧𝗜𝗠𝗘: ${wktuwib}`
 let thummb = fs.readFileSync('./thumbnail.jpg')
 
 conn.sendFile(m.chat, './thumbnail.jpg', '', almenu + readMore + text + ᴛᴇs + readMore, m, { contextInfo: { forwardingScore: fsizedoc, externalAdReply: { body: 'Tes', containsAutoReply: true, mediaType: 1, mediaUrl: hwaifu.getRandom(), renderLargerThumbnail: true, showAdAttribution: true, sourceId: 'Tes', sourceType: 'PDF', previewType: 'PDF', sourceUrl: sgc, thumbnailUrl: sgc, title: 'Jᴏɪɴ Mʏ Gᴄ Oғғɪᴄɪᴀʟ'}}})
     
 //------------------- BUTTON VID
-/conn.sendButton(m.chat, text, wm, 'https://youtu.be/3ONnszQtwz0', [['Ping', '.speed'],['Owner', '.owner'],['Donasi', '.donasi']],ftoko, { gifPlayback: true, contextInfo: { externalAdReply: {title: namebot, body: bottime, sourceUrl: sig, thumbnail: fs.readFileSync('./thumbnail.jpg') }}})/
+/*conn.sendButton(m.chat, text, wm, 'https://youtu.be/3ONnszQtwz0', [['Ping', '.speed'],['Owner', '.owner'],['Donasi', '.donasi']],ftoko, { gifPlayback: true, contextInfo: { externalAdReply: {title: namebot, body: bottime, sourceUrl: sig, thumbnail: fs.readFileSync('./thumbnail.jpg') }}})*/
 
 } catch (e) {
 conn.reply(m.chat, 'Maaf, menu sedang error', m)
@@ -594,7 +594,7 @@ let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000) % 30
 let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
 let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
 let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-return [ye, ' Years 🗓️\n',mo, ' Month 🌙\n', d, ' Days ☀️\n', h, ' Hours 🕐\n', m, ' Minute ⏰\n', s, ' Second ⏱️'].map(v => v.toString().padStart(2, 0)).join('')
+return [ye, ' *Years 🗓️*\n',mo, ' *Month 🌙*\n', d, ' *Days ☀️*\n', h, ' *Hours 🕐*\n', m, ' *Minute ⏰*\n', s, ' *Second ⏱️*'].map(v => v.toString().padStart(2, 0)).join('')
 }
 function ucapan() {
 const time = moment.tz('Asia/Jakarta').format('HH')
