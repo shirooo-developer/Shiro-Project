@@ -43,12 +43,6 @@ export async function handler(chatUpdate) {
             if (typeof user !== 'object')
                 global.db.data.users[m.sender] = {}
             if (user) {
-				if (!('history' in user) || typeof user.history !== 'object') {
-                    user.history = {
-                         currentEvent: 0,
-                         actions: [],
-                              };
-                             }
                 if (!isNumber(user.exp))
                     user.exp = 0
                 if (!isNumber(user.limit))
