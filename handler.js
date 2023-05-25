@@ -360,10 +360,12 @@ export async function handler(chatUpdate) {
                     user.organization.level = 0
 				if (!('followers' in user.organization))
                     user.organization.followers = []
-				if (!isNumber(user.organization.eliminatedOrgs))
-                    user.organization.eliminatedOrgs = 0			
-				if (!isNumber(user.organization.eliminatedFollowers))
-                    user.organization.eliminatedFollowers = 0
+				if (!isNumber(user.organization.organizationsDestroyed))
+                    user.organization.organizationsDestroyed = 0			
+				if (!isNumber(user.organization.followersDestroyed))
+                    user.organization.followersDestroyed = 0
+				if (!isNumber(user.organization.location))
+                    user.organization.location = 0
 				if (!('alliances' in user.organization))
                     user.organization.alliances = ''
 				
