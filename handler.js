@@ -347,7 +347,20 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.skinkastil))
 
                     user.skinkastil = 0
-
+					
+					
+				if (!('name' in user.followers))
+                    user.followers.name = ''
+				if (!isNumber(user.followers.age))
+                    user.followers.age = 0
+				if (!('race' in user.followers))
+                    user.followers.race = ''
+				if (!('gender' in user.followers))
+                    user.followers.gender = ''				
+				if (!('role' in user.followers))
+                    user.followers.role = ''
+				
+				
                 if (!isNumber(user.stamina))
 
                     user.stamina = 500
