@@ -1,8 +1,8 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
   let users = global.db.data.users;
   let sender = m.sender;
-  let cost = 10; // Biaya membuat poster
-  let cooldown = 3600; // Cooldown dalam milidetik (1 jam)
+  let cost = 10000; // Biaya membuat poster
+  let cooldown = 3000000; // Cooldown dalam milidetik (1 jam)
 
   if (!users[sender].organization) {
     throw 'Kamu tidak memiliki organisasi';
@@ -104,13 +104,13 @@ function generateRandomName() {
 
 // Fungsi untuk mendapatkan ras acak
 function getRandomRace() {
-  let races = ['Elf', 'Dwarf', 'Human', 'Orc', 'Goblin']
+let races = ['Elf', 'Dwarf', 'Human', 'Orc', 'Goblin', 'Fairy', 'Mermaid', 'Centaur', 'Werewolf', 'Vampire', 'Dragonborn', 'Satyr', 'Nymph', 'Siren', 'Harpy', 'Minotaur', 'Troll', 'Gnome', 'Halfling', 'Kitsune', 'Naga', 'Angel', 'Demon', 'Shapeshifter', 'Gorgon', 'Cyclops', 'Succubus', 'Incubus', 'Elemental', 'Witch', 'Wizard', 'Leprechaun', 'Sprite', 'Ghost', 'Mummy', 'Zombie', 'Phoenix', 'Dryad', 'Sylph', 'Doppelganger', 'Faun', 'Oni', 'Satellite', 'Android', 'Mecha', 'Spirit', 'Frost Giant', 'Salamander', 'Unicorn', 'Pegasus', 'Griffon', 'Banshee', 'Kraken', 'Chimera', 'Hydra', 'Pixie', 'Golem', 'Tengu', 'Centaurs', 'Jinn', 'Lycanthrope', 'Rakshasa', 'Shinigami', 'Thunderbird', 'Yeti', 'Wendigo', 'Giant', 'Valkyrie', 'Djinn', 'Fenghuang', 'Harbinger', 'Incarnate', 'Jotunn', 'Kappa', 'Lamia', 'Manticore', 'Nekomata', 'Pooka', 'Roc', 'Succubi', 'Tanuki', 'Wraith', 'Yokai', 'Ziz', 'Celestial', 'Lich', 'Merman', 'Ghoul', 'Wight', 'Kobold', 'Changeling', 'Gargoyle', 'Imp', 'Satyr', 'Selkie', 'Shade', 'Tiefling']
   return races[Math.floor(Math.random() * races.length)]
 }
 
 // Fungsi untuk mendapatkan umur acak
 function getRandomAge() {
-  return Math.floor(Math.random() * 50) + 20
+  return Math.floor(Math.random() * 20) + 10
 }
 
 // Fungsi untuk mendapatkan gender acak
@@ -121,6 +121,25 @@ function getRandomGender() {
 
 // Fungsi untuk mendapatkan role acak
 function getRandomRole() {
-  let roles = ['Warrior', 'Mage', 'Rogue', 'Cleric', 'Archer']
+let roles = [
+  'Warrior', 'Mage', 'Rogue', 'Cleric', 'Archer',
+  'Paladin', 'Sorcerer', 'Assassin', 'Priest', 'Hunter',
+  'Knight', 'Wizard', 'Thief', 'Druid', 'Sniper',
+  'Berserker', 'Warlock', 'Ninja', 'Monk', 'Ranger',
+  'Swordsman', 'Enchanter', 'Scout', 'Shaman', 'Trapper',
+  'Lancer', 'Illusionist', 'Acrobat', 'Exorcist', 'Tracker',
+  'Crusader', 'Elementalist', 'Shadow', 'Healer', 'Marksman',
+  'Gladiator', 'Summoner', 'Spy', 'Oracle', 'Warden',
+  'Brawler', 'Archmage', 'Duelist', 'High Priest', 'Sentinel',
+  'Valkyrie', 'Mystic', 'Ranger', 'Warrior Priest', 'Huntsman',
+  'Samurai', 'Necromancer', 'Stealth', 'Diviner', 'Beastmaster',
+  'Barbarian', 'Battle Mage', 'Swashbuckler', 'Battle Cleric', 'Sharpshooter',
+  'Warlord', 'Arcanist', 'Shadowblade', 'Bishop', 'Runekeeper',
+  'Templar', 'Sorceress', 'Infiltrator', 'Sage', 'Scavenger',
+  'Dreadknight', 'Pyromancer', 'Nightblade', 'Pilgrim', 'Artificer',
+  'Dragoon', 'Chronomancer', 'Tamer', 'Shepherd', 'Arbalest',
+  'Berserk', 'Spellbinder', 'Skirmisher', 'Acolyte', 'Ranger',
+  'Geomancer', 'Puppeteer', 'Slayer', 'Cantor', 'Marksman'
+]
   return roles[Math.floor(Math.random() * roles.length)]
 }

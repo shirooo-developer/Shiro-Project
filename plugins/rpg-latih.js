@@ -7,58 +7,95 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   }
 
   let orgData = users[sender].organization;
-  let followers = orgData.followers;
 
-  let trainingCount = parseInt(m.args[0]) || 1; // Jumlah pengikut yang dilatih (default: 1)
-  let trainingLevel = parseInt(m.args[1]) || 1; // Tingkat pelatihan (default: 1)
-  let timeShifterLevel = users[sender].timeShifter || 0; // Level artefak Time Shifter
-  let timeShifterReduction = timeShifterLevel * 5; // Pengurangan biaya pelatihan dari artefak Time Shifter
+  // Mendapatkan argumen dari pesan
+  let [trainCount, trainLevel] = m.text.split(' ').slice(1);
 
-  if (trainingCount <= 0) {
-    throw 'Jumlah pengikut yang dilatih harus lebih dari 0';
+  // Validasi argumen
+  if (!trainCount || !trainLevel) {
+    throw 'Format yang kamu masukkan salah. Contoh penggunaan: train 5 10';
   }
 
-  if (trainingLevel < 1 || trainingLevel > 10) {
-    throw 'Tingkat pelatihan harus antara 1 sampai 10';
+  trainCount = parseInt(trainCount);
+  trainLevel = parseInt(trainLevel);
+
+  // Validasi jumlah pengikut yang dilatih
+  if (isNaN(trainCount) || trainCount <= 0 || trainCount > orgData.followers.length) {
+    throw 'Jumlah pengikut yang dilatih tidak valid';
   }
 
-  let trainingCost = 1000 * trainingCount * trainingLevel - timeShifterReduction; // Biaya pelatihan
-  let trainingTime = 10 * trainingCount * trainingLevel; // Waktu pelatihan dalam menit
+  // Validasi tingkat pelatihan
+  if (isNaN(trainLevel) || trainLevel < 1 || trainLevel > 10) {
+    throw 'Tingkat pelatihan tidak valid';
+  }
 
-  if (users[sender].money < trainingCost) {
+  let trainCost = 1000 * trainCount * trainLevel; // Biaya pelatihan
+  let trainTime = 10 * 60 * 1000 * trainCount * trainLevel; // Waktu pelatihan (dalam milidetik)
+
+  // Mengurangi waktu pelatihan berdasarkan level artefak Time Shifter
+  let timeShifterLevel = Math.min(users[sender].timeShifter, 5); // Maksimal level artefak Time Shifter adalah 5
+  let timeShifterReduction = timeShifterLevel * 0.05; // Pengurangan waktu pelatihan per level artefak Time Shifter
+  trainTime -= trainTime * timeShifterReduction;
+
+  // Validasi uang pengguna
+  if (users[sender].money < trainCost) {
     throw 'Uang kamu tidak cukup untuk melatih pengikut';
   }
 
-  if (users[sender].lastTraining && (new Date() - users[sender].lastTraining) < trainingTime * 60000) {
-    let remainingTime = Math.ceil((trainingTime * 60000 - (new Date() - users[sender].lastTraining)) / 1000);
-    throw `Kamu harus menunggu ${remainingTime} detik untuk melatih lagi`;
+  // Validasi cooldown pelatihan
+  if (users[sender].lastbansos && users[sender].lastbansos > Date.now()) {
+    let cooldownTime = users[sender].lastbansos - Date.now();
+    throw `Kamu masih dalam cooldown pelatihan. Tunggu ${formatTime(cooldownTime)} lagi.`;
   }
 
-  let trainedFollowers = [];
-  for (let i = 0; i < trainingCount; i++) {
-    let follower = followers[i % followers.length]; // Melatih pengikut secara bergantian
-    let levelBefore = follower.level; // Level sebelum pelatihan
-    let levelIncrease = Math.floor(Math.random() * (trainingLevel + 1)); // Jumlah peningkatan level secara acak (0 - trainingLevel)
+  // Melakukan pelatihan pengikut
+  let message = `[ LATIHAN PENGUASAAN ]\n\n`;
+  message += `Jumlah Pengikut Dilatih: ${trainCount}\n`;
+  message += `Tingkat Pelatihan: ${trainLevel}\n`;
+  message += `Biaya: ${trainCost} money\n`;
+  message += `Waktu Pelatihan: ${formatTime(trainTime)}\n\n`;
+
+  // Simulasi peningkatan level pengikut
+  for (let i = 0; i < trainCount; i++) {
+    let follower = orgData.followers[i];
+    let levelIncrease = Math.floor(Math.random() * (trainLevel * 10 + 1)); // Peningkatan level acak antara 0 hingga trainLevel * 10
     follower.level += levelIncrease;
-    trainedFollowers.push({ name: follower.name, levelBefore, levelAfter: follower.level }); // Menyimpan data pengikut yang dilatih
+
+    message += `Pengikut ke-${i + 1}:\n`;
+    message += `Nama: ${follower.name}\n`;
+    message += `Level Sebelumnya: ${follower.level - levelIncrease}\n`;
+    message += `Level Saat Ini: ${follower.level}\n\n`;
   }
 
-  users[sender].money -= trainingCost;
-  users[sender].lastTraining = new Date();
+  // Mengurangi uang pengguna
+  users[sender].money -= trainCost;
 
-  let message = 'Pelatihan selesai. Pengikut berhasil ditingkatkan levelnya.\n\n';
-  for (let trainedFollower of trainedFollowers) {
-    message += `Nama: ${trainedFollower.name}\n`;
-    message += `Level Sebelumnya: ${trainedFollower.levelBefore}\n`;
-    message += `Level Sesudah: ${trainedFollower.levelAfter}\n\n`;
-  }
+  // Menjalankan waktu pelatihan
+  setTimeout(() => {
+    // Menghapus cooldown pelatihan setelah selesai
+    users[sender].lastbansos = null;
+    conn.reply(m.chat, `Pelatihan selesai! Pengikut telah berhasil ditingkatkan levelnya.`, m);
+  }, trainTime);
+
+  // Mengatur cooldown pelatihan
+  users[sender].lastbansos = Date.now() + trainTime;
 
   conn.reply(m.chat, message, m);
 };
 
-handler.help = ['latih <jumlah> <tingkat>'];
+handler.help = ['train <jumlah> <tingkat>'];
 handler.tags = ['rpg'];
-handler.command = /^latih$/i;
+handler.command = /^train$/i;
 handler.group = true;
+
+// Fungsi untuk format waktu dalam hh:mm:ss
+function formatTime(ms) {
+  let seconds = Math.floor(ms / 1000);
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor((seconds % 3600) / 60);
+  seconds = seconds % 60;
+
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
 export default handler;
