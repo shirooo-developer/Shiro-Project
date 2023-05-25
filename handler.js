@@ -349,18 +349,6 @@ export async function handler(chatUpdate) {
                     user.skinkastil = 0
 					
 					
-if (!('followers' in user)) {
-  user.followers = []
-}
-
-let follower = {
-  name: '',
-  age: 0,
-  race: '',
-  gender: '',
-  role: ''
-}
-
 if (!('name' in follower))
   follower.name = ''
 if (!('age' in follower))
@@ -371,8 +359,6 @@ if (!('gender' in follower))
   follower.gender = ''
 if (!('role' in follower))
   follower.role = ''
-
-user.followers.push(follower)
 
 				
 				if (!('name' in user.organization))
