@@ -347,6 +347,11 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.skinkastil))
 
                     user.skinkastil = 0
+				
+			     if (!isNumber(user.timeShifter))
+                    user.timeShifter = 0
+				if (!isNumber(user.lastTraining))
+                    user.lastTraining = 0
 					
 				
 				if (!('name' in user.organization))
