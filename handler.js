@@ -349,16 +349,31 @@ export async function handler(chatUpdate) {
                     user.skinkastil = 0
 					
 					
-				if (!('name' in user.followers))
-                    user.followers.name = ''
-				if (!isNumber(user.followers.age))
-                    user.followers.age = 0
-				if (!('race' in user.followers))
-                    user.followers.race = ''
-				if (!('gender' in user.followers))
-                    user.followers.gender = ''				
-				if (!('role' in user.followers))
-                    user.followers.role = ''
+if (!('followers' in user)) {
+  user.followers = []
+}
+
+let follower = {
+  name: '',
+  age: 0,
+  race: '',
+  gender: '',
+  role: ''
+}
+
+if (!('name' in follower))
+  follower.name = ''
+if (!('age' in follower))
+  follower.age = 0
+if (!('race' in follower))
+  follower.race = ''
+if (!('gender' in follower))
+  follower.gender = ''
+if (!('role' in follower))
+  follower.role = ''
+
+user.followers.push(follower)
+
 				
 				if (!('name' in user.organization))
                     user.organization.name = ''
