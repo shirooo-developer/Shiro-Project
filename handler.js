@@ -364,8 +364,6 @@ export async function handler(chatUpdate) {
                     user.organization.organizationsDestroyed = 0			
 				if (!isNumber(user.organization.followersDestroyed))
                     user.organization.followersDestroyed = 0
-				if (!isNumber(user.organization.location))
-                    user.organization.location = 0
 				if (!('alliances' in user.organization))
                     user.organization.alliances = ''
 				
