@@ -12,19 +12,16 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     throw 'Silakan masukkan nama organisasi yang ingin kamu buat';
   }
 
-  let location = Math.floor(100000000 + Math.random() * 900000000); // Menghasilkan angka acak 9 digit
-
   users[sender].organization = {
     name: orgName,
     level: 0,
     totalFollowers: 0,
     followersDestroyed: 0,
     organizationsDestroyed: 0,
-    followers: [],
-    location: location.toString() // Mengubah angka lokasi menjadi string
+    followers: []
   };
 
-  conn.reply(m.chat, `Organisasi "${orgName}" dengan kode lokasi ********* (cek lokasi organisasimu dichat pribadi .ceklokasi) telah berhasil dibuat!, organisasimu bisa diserang jika organisasi lain mengetahui lokasi organisasimu`, m);
+  conn.reply(m.chat, `Organisasi "${orgName}" telah berhasil dibuat!`, m);
 };
 
 handler.help = ['createorg <nama>'];
