@@ -2773,20 +2773,20 @@ if (typeof dungeon !== 'object')
   global.db.data[m.sender].dungeon = {};
 dungeon = global.db.data[m.sender].dungeon; // Update variabel dungeon
 
-if (!('dungeonName' in dungeon))
-  dungeon.dungeonName = 'A'; // Tambahkan tanda kutip pada nilai string
-if (!('bossName' in dungeon))
-  dungeon.bossName = 'Bos A'; // Tambahkan tanda kutip pada nilai string
-if (!('dungeonFounder' in dungeon))
-  dungeon.dungeonFounder = 'Keizha'; // Tambahkan tanda kutip pada nilai string
-if (!('conqueredFloor' in dungeon))
-  dungeon.conqueredFloor = 0;
-if (!('maxFloor' in dungeon))
-  dungeon.maxFloor = 100;
-if (!('currentFloor ' in dungeon))
-  dungeon.currentFloor  = 0;
-if (!('currentFloorMonsters' in dungeon))
-  dungeon.currentFloorMonsters = 20;
+if (!('name' in dungeon))
+  dungeon.name = 'A'; // Tambahkan tanda kutip pada nilai string
+if (!('inventor' in dungeon))
+  dungeon.inventor = 'Keizha'; // Tambahkan tanda kutip pada nilai string
+if (!('creator' in dungeon))
+  dungeon.creator = 'Keizha'; // Tambahkan tanda kutip pada nilai string
+if (!('conqueredFloors' in dungeon))
+  dungeon.conqueredFloors = 0;
+if (!('maxFloors' in dungeon))
+  dungeon.maxFloors = 5;
+if (!('lastFloorBoss ' in dungeon))
+  dungeon.lastFloorBoss  = 'Boss A';
+if (!('floorMonsters' in dungeon))
+  dungeon.floorMonsters = ['1','1','3','3','2'];
 
 
             let settings = global.db.data.settings[this.user.jid]
