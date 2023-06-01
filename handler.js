@@ -2783,6 +2783,8 @@ if (!('conqueredFloor' in dungeon))
   dungeon.conqueredFloor = 0;
 if (!('maxFloor' in dungeon))
   dungeon.maxFloor = 100;
+if (!('currentFloor ' in dungeon))
+  dungeon.currentFloor  = 0;
 if (!('currentFloorMonsters' in dungeon))
   dungeon.currentFloorMonsters = 20;
 
