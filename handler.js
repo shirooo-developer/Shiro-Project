@@ -2766,6 +2766,26 @@ if (!isNumber(user.mak))
 					soal: null
 
 				}
+				
+			
+let dungeon = global.db.data[m.sender].dungeon;
+if (typeof dungeon !== 'object')
+  global.db.data[m.sender].dungeon = {};
+dungeon = global.db.data[m.sender].dungeon; // Update variabel dungeon
+
+if (!('dungeonName' in dungeon))
+  dungeon.dungeonName = 'A'; // Tambahkan tanda kutip pada nilai string
+if (!('bossName' in dungeon))
+  dungeon.bossName = 'Bos A'; // Tambahkan tanda kutip pada nilai string
+if (!('dungeonFounder' in dungeon))
+  dungeon.dungeonFounder = 'Keizha'; // Tambahkan tanda kutip pada nilai string
+if (!('conqueredFloor' in dungeon))
+  dungeon.conqueredFloor = 0;
+if (!('maxFloor' in dungeon))
+  dungeon.maxFloor = 100;
+if (!('currentFloorMonsters' in dungeon))
+  dungeon.currentFloorMonsters = 20;
+
 
             let settings = global.db.data.settings[this.user.jid]
 
