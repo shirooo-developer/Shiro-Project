@@ -151,5 +151,5 @@ const listMessage = {
 handler.help = ['select-tipeytb']
 handler.tags = ['rpg']
 handler.command = /^(select-tipeytb)/i
-handler.register = true
+handler.register = false
 export default handler

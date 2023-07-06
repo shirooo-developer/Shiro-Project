@@ -40,7 +40,7 @@ Fitur Memancing Sedang CD\nSelama 🕐 ${timers.toTimeString()}
 handler.help = ['mancing1']
 handler.tags = ['rpg']
 handler.command = /^(mancing1|(ber)?petualang(ang)?)$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 handler.cooldown = cooldown
 handler.disabled = false

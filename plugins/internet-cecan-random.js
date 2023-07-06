@@ -8,5 +8,5 @@ handler.command = /^(cecan)$/i
 handler.tags = ['internet']
 handler.help = ['cecan']
 handler.limit = 1
-handler.register = true
+handler.register = false
 export default handler

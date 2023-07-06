@@ -21,7 +21,7 @@ const fkontak = {
 handler.help = ['o-hidetag <pesan>']
 handler.tags = ['group']
 handler.command = /^(o-hidetag|oh|ohidetag)$/i
-handler.register = true
+handler.register = false
 handler.group = true
 handler.owner = true
 

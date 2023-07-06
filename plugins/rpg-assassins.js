@@ -11,11 +11,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   let killed = Math.random() < userChance
   
   if (killed) {
-    let runeDecrease = Math.floor(Math.random() * 3) + 1
+    let runeDecrease = Math.floor(Math.random() * 6) + 1
     let targetRunes = users[target].runes
     let userRunes = users[m.sender].runes
     
-    if (targetRunes > 100) throw 'Rune target melebihi 100. Tidak bisa melakukan assassins.'
+    if (targetRunes > 100) throw 'Rune target melebihi 70. Tidak bisa melakukan assassins.'
     if (userRunes < runeDecrease) runeDecrease = userRunes
     
     users[target].exp -= exp

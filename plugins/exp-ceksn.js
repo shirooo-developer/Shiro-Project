@@ -10,5 +10,5 @@ m.reply(`${sn}`)
 handler.help = ['ceksn']
 handler.tags = ['xp']
 handler.command = /^(ceksn)$/i
-handler.register = true
+handler.register = false
 export default handler

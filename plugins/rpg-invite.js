@@ -36,7 +36,7 @@ let handler = async (m, { args }) => {
 handler.help = ['requestguild @leader', 'reqguild @leader']
 handler.tags = ['rpg']
 handler.command = /^(request|req)guild$/i
-handler.register = true
+handler.register = false
 handler.group = true
 
 export default handler

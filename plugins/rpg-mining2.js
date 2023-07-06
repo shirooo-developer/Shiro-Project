@@ -37,7 +37,7 @@ Fitur Berpetualang Sedang CD\nSelama *🕐 ${timers.toTimeString()}*
 handler.help = ['mining2']
 handler.tags = ['rpg']
 handler.command = /^(mining2|(ber)?petualang(ang)?)$/i
-handler.register = true
+handler.register = false
 handler.limit = 2
 handler.cooldown = cooldown
 handler.disabled = false

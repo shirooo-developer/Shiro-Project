@@ -1,27 +1,31 @@
-const cooldown = 3600000
+const cooldown = 3600
 let handler = async (m, { usedPrefix }) => {
     let user = global.db.data.users[m.sender]
     let timers = (cooldown - (new Date - user.lastadventure))
-    if (user.health < 90) return m.reply(`
-*Dibutuhkan Setidaknya 90HP ❤️ Untuk Berpetualang*
+    if (user.health < 495) return m.reply(`
+*Dibutuhkan Setidaknya 495HP ❤️ Untuk Berpetualang*
 Beli Potion Untuk Return HP Di: *${usedPrefix}buy potion jumlah*,
 Dan Ketik *${usedPrefix}heal jumlah* Untuk Menggunakan Potion
 `.trim())
-    if (user.stamina < 90) return m.reply(`
-*Dibutuhkan Setidaknya 90ST ⚡ Untuk Berpetualang*
+    if (user.stamina < 495) return m.reply(`
+*Dibutuhkan Setidaknya 495ST ⚡ Untuk Berpetualang*
 *Cari Cara Menambah Stamina Di #stamina*
 `.trim())
-    if (user.money < 9999) return m.reply(`
-*Dibutuhkan Setidaknya 10K Money💵 Untuk Berpetualang*
+if (user.skilladventure < 4) return m.reply(`
+*Dibutuhkan Setidaknya Level 4 A-A Untuk Berpetualang*
+*Dapatkan Adventure Ability Di #library*
+`.trim())
+    if (user.money < 99999) return m.reply(`
+*Dibutuhkan Setidaknya 100K Money💵 Untuk Berpetualang*
 *Dapatkan Money Di Fitur Role Playing Game*
 `.trim())
     if (new Date - user.lastadventure <= cooldown) return m.reply(`
 Fitur Berpetualang Sedang CD\nSelama *🕐 ${timers.toTimeString()}*
 `.trim())
     const rewards = reward(user)
-    let text = `*Anda Telah Berpetualang Ke Arah Timur Dan Sampai Di ${pickRandom(['Russia', 'China', 'Jepang', 'Korea Selatan', 'Australia', 'Selandia Baru', 'Indonesia', 'Malaysia','Filipina'])}`
+    let text = `*Anda Telah Berpetualang Dan Sampai Di ${pickRandom(['Russia', 'China', 'Jepang', 'Korea Selatan', 'Australia', 'Selandia Baru', 'Indonesia', 'Malaysia','Filipina'])}`
 
-    // Cerita Petualangan
+ // Cerita Petualangan
 let adventures = [
     "Anda bertemu dengan sekelompok bajak laut di perjalanan dan berhasil mengalahkan mereka dengan kepandaian bertarung.",
     "Anda tersesat di tengah hutan yang lebat, tetapi dengan keberanian dan kecerdikan, Anda berhasil menemukan jalan keluar.",
@@ -150,25 +154,48 @@ let adventures = [
     }
     
     let adventure = pickRandom(adventures);
-    text += ` dan ${adventure}*\n`;
-
-    for (const lost in rewards.lost) if (user[lost]) {
-        const total = rewards.lost[lost].getRandom()
-        user[lost] -= total * 1
-        if (total) text += `\n*${global.rpg.emoticon(lost)}${lost}:* ${total}`
+    let success = Math.random() > 0.3; // Peluang sukses 70%
+    
+    if (success) {
+        text += ` dan ${adventure}*\n`;
+        for (const lost in rewards.lost) if (user[lost]) {
+            const total = rewards.lost[lost].getRandom()
+            user[lost] -= total * 1
+            if (total) text += `\n*${global.rpg.emoticon(lost)}${lost}:* ${total}`
+        }
+        text += '\n\n*_Dan Kamu Mendapatkan Hadiah_*'
+        for (const rewardItem in rewards.reward) if (rewardItem in user) {
+            const total = rewards.reward[rewardItem].getRandom()
+            user[rewardItem] += total * 1
+            if (total) text += `\n*${global.rpg.emoticon(rewardItem)}${rewardItem}:* ${total}`
+        }
+    } else {
+        let reason = `${pickRandom(['bodoh', 'gagal', 'tidak memadai', 'kurang persiapan', 'kondisi cuaca buruk', 'pemimpin tidak efektif', 'peralatan rusak', 'komunikasi terputus', 'konflik internal', 'kurang dukungan tim', 'rencana yang buruk', 'tidak dapat mencapai tujuan', 'terlambat memulai', 'hilang arah', 'terperangkap', 'kegagalan sistem', 'kurangnya pengetahuan', 'kelelahan', 'keputusan yang salah', 'ketidaksiapan mental', 'kurangnya keterampilan', 'gangguan eksternal', 'sumber daya terbatas', 'kendala waktu', 'kesalahan perhitungan', 'konflik kepentingan', 'hambatan fisik', 'kurangnya perencanaan', 'kurangnya motivasi', 'kurangnya koordinasi', 'hilangnya dukungan', 'kehilangan barang berharga', 'keadaan darurat', 'kegagalan teknologi', 'pengawasan yang buruk', 'gangguan alam', 'tindakan tidak terduga', 'kemunduran ekonomi', 'persaingan yang kuat', 'kegagalan pemasaran', 'tidak ada permintaan', 'kurangnya pemasaran', 'krisis finansial', 'kerugian finansial', 'ketidakstabilan pasar', 'kegagalan investasi', 'tidak memenuhi harapan', 'kurangnya strategi', 'perubahan regulasi', 'kegagalan hukum', 'kurangnya perlindungan hukum', 'kegagalan administrasi', 'kesalahan administrasi', 'perubahan kebijakan', 'kegagalan kebijakan', 'kurangnya pendanaan', 'masalah perpajakan', 'kehilangan sumber daya', 'kurangnya keahlian teknis', 'penipuan', 'korupsi', 'kurangnya kepatuhan', 'kegagalan kepatuhan', 'perubahan lingkungan', 'kehilangan pasar', 'ketidakstabilan politik', 'konflik politik', 'kurangnya dukungan politik', 'kegagalan diplomasi', 'ketidakpercayaan', 'kehilangan kepercayaan', 'kehilangan pelanggan', 'kurangnya pelanggan', 'kegagalan bisnis', 'kegagalan kepemimpinan', 'kegagalan tim', 'kurangnya integritas', 'kegagalan komunikasi', 'kegagalan negosiasi', 'kegagalan kerjasama', 'ketidaksepakatan', 'kegagalan adaptasi', 'kegagalan inovasi', 'kurangnya keberanian', 'pengambilan risiko yang buruk', 'kegagalan pemecahan masalah', 'kegagalan evaluasi', 'kegagalan perencanaan', 'kegagalan pengambilan keputusan', 'kurangnya pengalaman', 'kurangnya pemahaman','kegagalan strategi', 'kegagalan implementasi', 'kegagalan kontrol kualitas', 'kegagalan pengawasan', 'kurangnya pemantauan', 'kurangnya responsif', 'kegagalan penyesuaian', 'kegagalan adaptasi', 'kurangnya kesiapan', 'kegagalan komitmen', 'kegagalan koordinasi', 'kurangnya dukungan manajemen', 'kegagalan pengelolaan proyek', 'kegagalan manajemen risiko', 'kurangnya analisis', 'kegagalan pemahaman pasar', 'kegagalan penelitian', 'kurangnya kualifikasi', 'kurangnya fokus', 'kegagalan pendekatan', 'kegagalan pendekatan kreatif', 'kegagalan strategi pemasaran', 'kegagalan operasional', 'kegagalan pengadaan', 'kurangnya pengembangan produk', 'kegagalan pengembangan', 'kegagalan adaptasi teknologi', 'kurangnya penyesuaian budaya', 'kegagalan identifikasi masalah', 'kurangnya pemecahan masalah', 'kegagalan pengawasan keuangan', 'kegagalan manajemen keuangan', 'kegagalan analisis data', 'kurangnya akses informasi', 'kegagalan integrasi sistem', 'kegagalan pengaturan prioritas', 'kurangnya perhatian detail', 'kegagalan pengelolaan konflik', 'kegagalan pengelolaan waktu', 'kegagalan pengelolaan sumber daya manusia', 'kegagalan pengelolaan performa', 'kurangnya pengelolaan stres', 'kurangnya pemenuhan target', 'kegagalan perencanaan keuangan', 'kurangnya analisis keuangan', 'kegagalan evaluasi kinerja', 'kegagalan manajemen kinerja', 'kegagalan manajemen perubahan', 'kurangnya komunikasi timbal balik', 'kurangnya penghargaan', 'kegagalan pemberian umpan balik', 'kegagalan pengembangan keterampilan', 'kegagalan pelatihan', 'kurangnya pengembangan kepemimpinan', 'kurangnya pengembangan tim', 'kegagalan rekruitmen', 'kegagalan retensi karyawan', 'kurangnya budaya kerja yang inklusif', 'kegagalan penghargaan kinerja', 'kegagalan pengenalan produk', 'kegagalan penetapan harga', 'kegagalan distribusi', 'kurangnya pemahaman pasar', 'kegagalan penetrasi pasar', 'kurangnya strategi branding', 'kurangnya strategi promosi', 'kegagalan penjualan', 'kegagalan pemasaran digital', 'kegagalan manajemen rantai pasok', 'kegagalan pengadaan bahan baku', 'kegagalan pengiriman', 'kegagalan manajemen produksi', 'kurangnya perawatan', 'kegagalan perawatan', 'kurangnya pemeliharaan', 'kegagalan perbaikan', 'kegagalan keandalan', 'kegagalan keamanan', 'kurangnya kebersihan', 'kegagalan pengawasan kualitas', 'kurangnya pengendalian mutu', 'kegagalan manajemen inventaris', 'kegagalan manajemen persediaan', 'kegagalan pengendalian biaya', 'kurangnya efisiensi', 'kegagalan penghematan', 'kegagalan manajemen energi', 'kegagalan manajemen risiko lingkungan', 'kurangnya kesadaran lingkungan', 'kegagalan kepatuhan lingkungan', 'kurangnya keamanan data', 'kegagalan kepatuhan privasi', 'kurangnya perlindungan kekayaan intelektual', 'kegagalan pengelolaan resiko teknologi', 'kegagalan perlindungan informasi', 'kurangnya perbaikan berkelanjutan', 'kurangnya inovasi berkelanjutan', 'kegagalan pengelolaan dampak sosial', 'kegagalan tanggung jawab sosial', 'kegagalan etika bisnis', 'kurangnya pengelolaan keragaman', 'kegagalan keragaman dan inklusi', 'kegagalan manajemen reputasi', 'kegagalan kepuasan pelanggan', 'kurangnya pelayanan pelanggan', 'kegagalan penanganan keluhan', 'kegagalan layanan pelanggan', 'kurangnya responsivitas pelanggan', 'kegagalan komunikasi pelanggan', 'kegagalan pemenuhan janji', 'kegagalan kehandalan produk', 'kurangnya kebijakan pengembalian', 'kegagalan kepuasan karyawan', 'kegagalan manajemen keberagaman', 'kurangnya keadilan dalam organisasi', 'kurangnya kepuasan kerja', 'kegagalan pengembangan keterampilan pribadi', 'kegagalan manajemen pengetahuan', 'kurangnya kolaborasi tim', 'kegagalan pembuatan keputusan kolektif', 'kegagalan delegasi tugas', 'kegagalan manajemen waktu individu', 'kurangnya pengembangan karir', 'kegagalan pengembangan kepemimpinan individu', 'kegagalan manajemen keseimbangan kerja-hidup', 'kurangnya manajemen stres', 'kegagalan manajemen konflik tim', 'kegagalan manajemen perubahan individu', 'kegagalan manajemen kinerja individu', 'kurangnya pemenuhan tujuan pribadi', 'kegagalan manajemen ekspektasi', 'kegagalan pengaturan prioritas pribadi', 'kegagalan manajemen keuangan pribadi', 'kurangnya pengelolaan energi pribadi', 'kegagalan manajemen waktu pribadi', 'kurangnya kreativitas', 'kegagalan adaptasi teknologi', 'kegagalan mengikuti tren', 'kurangnya kecerdasan emosional', 'kegagalan pengambilan risiko', 'kegagalan memahami pasar', 'kurangnya pemahaman teknologi'])}`
+        let healthReduction = user.health * 0.9; // Mengurangi 90% HP
+        let staminaReduction = user.stamina * 0.9; // Mengurangi 90% Stamina
+        
+        if (Math.random() < 0.2) {
+            reason = 'Anda digebal dan kehilangan sebagian uang.';
+            let moneyReduction = user.money * 0.005; // Mengurangi 0.5% Money
+            user.money -= moneyReduction;
+            text += `\n\n*Anda gagal karena ${reason}*`;
+            text += `\n*HP* berkurang sebesar ${healthReduction}\n*Stamina* berkurang sebesar ${staminaReduction}\n*Money* berkurang sebesar ${moneyReduction}`;
+        } else {
+            reason = 'Anda mengalami kegagalan dalam petualangan.';
+            text += `\n\n*Anda gagal karena ${reason}*`;
+            text += `\n*HP* berkurang sebesar ${healthReduction}\n*Stamina* berkurang sebesar ${staminaReduction}`;
+        }
+        
+        user.health -= healthReduction;
+        user.stamina -= staminaReduction;
     }
-    text += '\n\n*_Dan Kamu Mendapatkan Hadiah_*'
-    for (const rewardItem in rewards.reward) if (rewardItem in user) {
-        const total = rewards.reward[rewardItem].getRandom()
-        user[rewardItem] += total * 1
-        if (total) text += `\n*${global.rpg.emoticon(rewardItem)}${rewardItem}:* ${total}`
-    }
+    
     m.reply(text.trim())
-    user.lastadventure = new Date * 1
+    user.lastadventure = new Date() * 1
 }
-handler.help = ['adventure1']
+handler.help = ['adventure5']
 handler.tags = ['rpg']
-handler.command = /^(adventure1|(ber)?petualang(ang)?)$/i
+handler.command = /^(adventure5|(ber)?petualang(ang)?)$/i
 handler.register = false
 handler.limit = 1
 handler.cooldown = cooldown
@@ -179,15 +206,10 @@ export default handler
 function reward(user = {}) {
     let rewards = {
         reward: {
-            exp: 50000,
-            advenaglory: 5000,
-            money: 100000,
-            coal: 10,
-            wood: 10,
-            apel: 5,
-            paus: 5,
-            kepiting: 5,
-            gurita: 5,
+            exp: 700000,
+            advenaglory: 70000,
+            money: 700000,
+			diamond: 10
         },
         lost: {
             health: 101 - user.cat * 4,

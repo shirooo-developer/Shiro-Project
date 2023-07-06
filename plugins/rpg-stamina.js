@@ -14,6 +14,6 @@ Ada Beberapa Fitur Untuk Menambah Stamina / ST
 handler.help = ['stamina']
 handler.tags = ['rpg']
 handler.command = /^stamina$/i
-handler.register = true
+handler.register = false
 handler.premium = false
 export default handler

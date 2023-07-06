@@ -29,6 +29,6 @@ await conn.sendButton(m.chat, nohoki, wm, [['𝗠𝗘𝗡𝗨', '.menu']], m)
 handler.help = ['nomorhoki'].map(v => v + ' <Apa>')
 handler.tags = ['internet']
 handler.command = /^(nomorhoki)$/i
-handler.register = true
+handler.register = false
 
 export default handler

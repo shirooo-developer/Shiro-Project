@@ -11,6 +11,6 @@ ${Object.entries(res.today).map(([name, data]) => `*Sholat ${name}:* ${data}`).j
 handler.help = ['salat <daerah>']
 handler.tags = ['quran']
 handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 export default handler

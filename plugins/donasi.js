@@ -30,7 +30,7 @@ conn.relayMessage(m.chat, catalog.message, { messageId: catalog.key.id })
 handler.help = ['donasi']
 handler.tags = ['main']
 handler.command = /^(donasi|donate)$/i
-handler.register = true
+handler.register = false
 handler.limit = true
 
 export default handler

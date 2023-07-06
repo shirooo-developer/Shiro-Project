@@ -37,7 +37,7 @@ Fitur Menebang Sedang CD\nSelama *🕐 ${timers.toTimeString()}*
 handler.help = ['nebang']
 handler.tags = ['rpg']
 handler.command = /^(nebang|(ber)?petualang(ang)?)$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 handler.cooldown = cooldown
 handler.disabled = false

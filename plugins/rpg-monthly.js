@@ -21,7 +21,7 @@ let handler = async (m) => {
 handler.help = ['monthly']
 handler.tags = ['rpg']
 handler.command = /^(monthly)$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 handler.cooldown = cooldown
 

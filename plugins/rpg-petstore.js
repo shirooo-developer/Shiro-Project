@@ -33,11 +33,11 @@ const sections = [
    {
 	title: "𝗣𝗘𝗧 𝗦𝗧𝗢𝗥𝗘",
 	rows: [
-	    {title: "🐈 • Cat", rowId: ".petshop cat"},
-	    {title: "🐕 • Dog", rowId: ".petshop dog"},
-	    {title: "🐎 • Horse", rowId: ".petshop horse"},
-	    {title: "🦊 • Fox", rowId: ".petshop fox"},
-	    {title: "🍖 • Pet Food", rowId: ".petshop petfood"},
+	    {title: "🐈 • Cat", rowId: ".petshop2 cat"},
+	    {title: "🐕 • Dog", rowId: ".petshop2 dog"},
+	    {title: "🐎 • Horse", rowId: ".petshop2 horse"},
+	    {title: "🦊 • Fox", rowId: ".petshop2 fox"},
+	    {title: "🍖 • Pet Food", rowId: ".petshop2 petfood"},
 	]
     },
 ]
@@ -51,7 +51,7 @@ const listMessage = {
 }
 
   try {
-    if (/petshop/i.test(command)) {
+    if (/petshop2/i.test(command)) {
       const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
         switch (type) {
           case 'cat':
@@ -111,8 +111,8 @@ const listMessage = {
   }
 }
 
-handler.help = ['petshop']
+handler.help = ['petshop2']
 handler.tags = ['rpg']
-handler.command = /^(petshop)/i
-handler.register = true
+handler.command = /^(petshop2)/i
+handler.register = false
 export default handler

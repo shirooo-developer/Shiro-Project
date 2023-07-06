@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "Premium NSFW", rowId: `${usedPrefix + command} premnsfwchat`},
 	{title: "Anti-Link", rowId: `${usedPrefix + command} antilink`},
 	{title: "Anti-Delete", rowId: `${usedPrefix + command} antidelete`},
-	{title: "Anti-Toxic", rowId: `${usedPrefix + command} antitoxic`},
+	{title: "Anti-Badword", rowId: `${usedPrefix + command} antibadword`},
 	{title: "Auto Level Up", rowId: `${usedPrefix + command} autolevelup`},
 	{title: "Detect", rowId: `${usedPrefix + command} detect`},
 	{title: "Document", rowId: `${usedPrefix + command} document`},
@@ -153,14 +153,14 @@ case 'updateAnime':
         }}
       chat.premnsfw = isEnable
       break
-     case 'antitoxic':
+     case 'antibadword':
        if (m.isGroup) {
        if (!(isAdmin || isOwner)) {
        global.dfail('admin', m, conn)
            throw false
          }
      }
-      chat.antiToxic = !isEnable
+      chat.antiBadword = !isEnable
       break
       case 'antivirtex':
        if (m.isGroup) {
@@ -252,5 +252,5 @@ case 'updateAnime':
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
 handler.tags = ['group', 'owner']
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
-handler.register = true
+handler.register = false
 export default handler

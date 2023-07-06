@@ -22,7 +22,7 @@ Sukses Meminum *${count}* 💦O/S Restorer
 handler.help = ['osr']
 handler.tags = ['rpg']
 handler.command = /^(osr)$/i
-handler.register = true
+handler.register = false
 handler.limit = 3
 export default handler
 

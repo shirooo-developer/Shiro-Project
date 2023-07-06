@@ -1,8 +1,8 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
   let users = global.db.data.users;
   let sender = m.sender;
-  let cost = 10000; // Biaya membuat poster
-  let cooldown = 3000000; // Cooldown dalam milidetik (1 jam)
+  let cost = 10; // Biaya membuat poster
+  let cooldown = 3000; // Cooldown dalam milidetik (1 jam)
 
   if (!users[sender].organization) {
     throw 'Kamu tidak memiliki organisasi';

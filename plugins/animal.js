@@ -29,7 +29,7 @@ ${usedPrefix}${command} panda
 handler.help = ['animal'].map((v) => `${v} <opsi>`);
 handler.tags = ['internet'];
 handler.command = /^(animal|animalfact)$/i;
-handler.register = true;
+handler.register = false;
 handler.limit = 1;
 
 export default handler;

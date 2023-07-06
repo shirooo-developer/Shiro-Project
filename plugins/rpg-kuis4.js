@@ -12,6 +12,6 @@ wa.me/6281249122429
 handler.help = ['kuis4']
 handler.tags = ['rpg']
 handler.command = /^kuis4$/i
-handler.register = true
+handler.register = false
 handler.premium = false
 export default handler

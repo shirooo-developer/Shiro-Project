@@ -33,7 +33,7 @@ const handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['alkitab <search query>'];
 handler.tags = ['internet'];
 handler.command = /^alkitab/i;
-handler.register = true;
+handler.register = false;
 handler.limit = 1;
 
 export default handler;

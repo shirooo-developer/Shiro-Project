@@ -120,7 +120,7 @@ Selamat Anda Mendapatkan Item Epik, Yaitu ${pet ? `${pet} ${rpg.emoticon('pet')}
 handler.help = ['open', 'gacha'].map(v => v + ' [crate] [count]')
 handler.tags = ['rpg']
 handler.command = /^(open|buka|gacha)$/i
-handler.register = true
+handler.register = false
 export default handler
 
 function isNumber(number) {

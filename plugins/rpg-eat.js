@@ -50,15 +50,15 @@ const sections = [
    {
 	title: "𝗘𝗔𝗧𝗜𝗡𝗚 𝗙𝗢𝗢𝗗",
 	rows: [
-	    {title: "Ayam Bakar 🍗", rowId: ".eat ayamb", description: "+ 40 Stamina ⚡"},
-	    {title: "Ayam Goreng 🍗", rowId: ".eat ayamg", description: "+ 50 Stamina ⚡"},
-	    {title: "Steak 🥩", rowId: ".eat steak", description: "+ 70 Stamina ⚡"},
-	    {title: "Ikan Bakar 🐟", rowId: ".eat ikan", description: "+ 44 Stamina ⚡"},
-	    {title: "Udang Bakar 🍤", rowId: ".eat udang", description: "+ 60 Stamina ⚡"},
-	    {title: "Babi Panggang 🥓", rowId: ".eat babi", description: "+ 58 Stamina ⚡"},
-	    {title: "Jus Mangga 🍸", rowId: ".eat jusmangga", description: "+ 60 Stamina ⚡"},
-	    {title: "Pisang Goreng 🍌", rowId: ".eat pisanggoreng", description: "+ 60 Stamina ⚡"},
-	    {title: "Mie Ayam 🍝", rowId: ".eat mieayamm", description: "+ 110 Stamina ⚡"},
+	    {title: "Ayam Bakar 🍗", rowId: ".eat2 ayamb", description: "+ 40 Stamina ⚡"},
+	    {title: "Ayam Goreng 🍗", rowId: ".eat2 ayamg", description: "+ 50 Stamina ⚡"},
+	    {title: "Steak 🥩", rowId: ".eat2 steak", description: "+ 70 Stamina ⚡"},
+	    {title: "Ikan Bakar 🐟", rowId: ".eat2 ikan", description: "+ 44 Stamina ⚡"},
+	    {title: "Udang Bakar 🍤", rowId: ".eat2 udang", description: "+ 60 Stamina ⚡"},
+	    {title: "Babi Panggang 🥓", rowId: ".eat2 babi", description: "+ 58 Stamina ⚡"},
+	    {title: "Jus Mangga 🍸", rowId: ".eat2 jusmangga", description: "+ 60 Stamina ⚡"},
+	    {title: "Pisang Goreng 🍌", rowId: ".eat2 pisanggoreng", description: "+ 60 Stamina ⚡"},
+	    {title: "Mie Ayam 🍝", rowId: ".eat2 mieayamm", description: "+ 110 Stamina ⚡"},
 
 	]
     },
@@ -73,7 +73,7 @@ const listMessage = {
 }
 
   try {
-    if (/eat|Eat/i.test(command)) {
+    if (/eat2|Eat/i.test(command)) {
       const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
         switch (type) {
           case 'ayamb':
@@ -161,8 +161,8 @@ const listMessage = {
   }
 }
 
-handler.help = ['eat']
+handler.help = ['eat2']
 handler.tags = ['rpg']
-handler.command = /^(eat|eating)/i
+handler.command = /^(eat2|eating)/i
 handler.register = false
 export default handler

@@ -18,6 +18,6 @@ handler.tags = ['group']
 handler.command = ['poll', 'polling'] 
 handler.group = true
 handler.admin = true
-handler.register = true
+handler.register = false
 handler.limit = 2
 export default handler

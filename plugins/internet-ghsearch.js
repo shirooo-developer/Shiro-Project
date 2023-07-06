@@ -25,7 +25,7 @@ handler.tags = ['github']
 
 handler.command = /^g(ithub|h)search$/i
 handler.limit = 1
-handler.register = true
+handler.register = false
 export default handler
 
 function formatDate(n, locale = 'id') {

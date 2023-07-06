@@ -51,7 +51,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     message += `Selamat! Kamu berhasil menyerang Organisasi Target dan memperoleh kemenangan!\n`;
 
     // Mengurangi pengikut di kedua organisasi
-    let destroyedFollowers = attackCount;
+    let destroyedFollowers = Math.min(attackCount, targetOrg.followers.length);
     orgData.followers.splice(0, destroyedFollowers);
     targetOrg.followers.splice(0, destroyedFollowers);
 
@@ -62,6 +62,16 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     // Mengecek apakah organisasi target hancur
     if (targetOrg.followers.length === 0) {
       message += `Organisasi Target telah hancur! Kamu berhasil menghancurkan musuhmu!\n`;
+
+      // Mengambil bank target dengan besaran acak antara 0.1% sampai 2.0%
+      let targetBank = users[sender].bank || 0;
+      let stolenAmount = Math.random() * (targetBank * 0.02 - targetBank * 0.001) + targetBank * 0.001;
+      stolenAmount = parseFloat(stolenAmount.toFixed(2));
+
+      message += `Kamu berhasil mengambil ${stolenAmount} Money dari bank Organisasi Target!\n`;
+
+      // Menambahkan ke bank pengguna
+      users[sender].bank += stolenAmount;
 
       // Mencatat organisasi yang hancur
       users[sender].organizationsDestroyed++;
@@ -79,7 +89,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     users[sender].stamina -= 10;
 
     // Mengurangi pengikut di kedua organisasi
-    let destroyedFollowers = attackCount;
+    let destroyedFollowers = Math.min(attackCount, orgData.followers.length);
     orgData.followers.splice(0, destroyedFollowers);
     targetOrg.followers.splice(0, destroyedFollowers);
 
@@ -95,8 +105,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   }
 
   // Menampilkan jumlah pengikut yang mati
-  let userFollowersDied = attackCount;
-  let targetFollowersDied = attackCount;
+  let userFollowersDied = Math.min(attackCount, orgData.followers.length);
+  let targetFollowersDied = Math.min(attackCount, targetOrg.followers.length);
 
   message += `\nJumlah Pengikut Mati:\n`;
   message += `Pengikut Kamu: ${userFollowersDied}\n`;

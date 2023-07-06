@@ -117,5 +117,5 @@ const listMessage = {
 handler.help = ['library']
 handler.tags = ['rpg']
 handler.command = /^(library)/i
-handler.register = true
+handler.register = false
 export default handler

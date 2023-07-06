@@ -297,5 +297,5 @@ handler.help = ['stat']
 handler.tags = ['rpg']
 handler.command = /^(stat)$/i
 
-handler.register = true
+handler.register = false
 export default handler

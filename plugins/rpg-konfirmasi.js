@@ -62,7 +62,7 @@ handler.help = ['konfirmasi @user [terima|tolak] [alasan]']
 handler.tags = ['guild']
 handler.command = /^konfirmasi$/i
 handler.limit = true
-handler.register = true
+handler.register = false
 handler.group = true
 
 export default handler

@@ -118,17 +118,17 @@ const sections = [
 
 	rows: [
 
-	    {title: "Sword ⚔️", rowId: ".craft swordd", description: "Crafting A Sword"},
+	    {title: "Sword ⚔️", rowId: ".craft2 swordd", description: "Crafting A Sword"},
 
-	    {title: "Pickaxe ⛏️", rowId: ".craft pickaxee", description: "Crafting A Pickaxe"},
+	    {title: "Pickaxe ⛏️", rowId: ".craft2 pickaxee", description: "Crafting A Pickaxe"},
 
-	    {title: "Ax 🛶", rowId: ".craft axx", description: "Crafting A Ax"},
+	    {title: "Ax 🛶", rowId: ".craft2 axx", description: "Crafting A Ax"},
 
-	    {title: "Fishingrod 🎣", rowId: ".craft fishingrodd", description: "Crafting A Fishingrod"},
+	    {title: "Fishingrod 🎣", rowId: ".craft2 fishingrodd", description: "Crafting A Fishingrod"},
 
-	    {title: "Armor 🥼", rowId: ".craft armorr", description: "Crafting A Armor"},
+	    {title: "Armor 🥼", rowId: ".craft2 armorr", description: "Crafting A Armor"},
 
-	    {title: "ATM 💳", rowId: ".craft atmm", description: "Crafting A Atm"},
+	    {title: "ATM 💳", rowId: ".craft2 atmm", description: "Crafting A Atm"},
 
 	]
 
@@ -156,13 +156,13 @@ const listMessage = {
 
   try {
 
-    if (/craft|Crafting/i.test(command)) {
+    if (/craft2|Crafting/i.test(command)) {
 
       const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
 
         switch (type) {
 
-          case 'pickaxee':
+          case 'pickaxe':
 
           if (user.pickaxe > 10) return m.reply('Kamu Sudah Memilik Ini')
 
@@ -184,7 +184,7 @@ const listMessage = {
 
             break
 
-          case 'axx':
+          case 'ax':
 
           if (user.ax > 10) return m.reply('Kamu Sudah Memilik Ini')
 
@@ -206,7 +206,7 @@ const listMessage = {
 
             break
 
-          case 'swordd':
+          case 'sword':
 
           if (user.sword > 10) return m.reply('Kamu Sudah Memilik Ini')
 
@@ -224,7 +224,7 @@ const listMessage = {
 
             break
 
-          case 'fishingrodd':
+          case 'fishingrod':
 
           if (user.fishingrod > 3) return m.reply('Kamu Sudah Memilik Ini')
 
@@ -244,7 +244,7 @@ const listMessage = {
 
             break
 
-          case 'armorr':
+          case 'armor':
 
           if (user.armor > 10) return m.reply('Kamu Sudah Memilik Ini')
 
@@ -264,7 +264,7 @@ const listMessage = {
 
             break
 
-            case 'atmm':
+            case 'atm':
 
           if (user.atm > 99) return m.reply('Level Max')
 
@@ -328,11 +328,11 @@ const listMessage = {
 
 
 
-handler.help = ['craft']
+handler.help = ['craft2']
 
 handler.tags = ['rpg']
 
-handler.command = /^(craft|crafting|chant)/i
+handler.command = /^(craft2|crafting|chant)/i
 
 handler.register = false
 

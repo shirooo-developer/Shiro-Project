@@ -23,6 +23,6 @@ let handler = async (m, { text, conn }) => {
 handler.help = ['fetch', 'get'].map(v => v + ' <url>')
 handler.tags = ['internet']
 handler.command = /^(fetch|get)$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 export default handler

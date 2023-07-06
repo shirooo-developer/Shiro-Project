@@ -18,7 +18,7 @@ let handler = async (m,{ conn} ) => {
 handler.help = ['limitku']
 handler.tags = ['xp','rpg']
 handler.command = /^(limitku)$/i
-handler.register = true
+handler.register = false
 handler.cooldown = cooldown
 
 export default handler

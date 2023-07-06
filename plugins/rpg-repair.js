@@ -123,5 +123,5 @@ const listMessage = {
 handler.help = ['repair']
 handler.tags = ['rpg']
 handler.command = /^(repair)/i
-handler.register = true
+handler.register = false
 export default handler

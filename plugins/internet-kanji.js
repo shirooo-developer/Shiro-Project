@@ -25,5 +25,5 @@ handler.help = ['kanji'].map(v => v + ' <kanji>')
 handler.tags = ['internet']
 handler.command =/^(kanji)$/i
 handler.limit = true
-handler.register = true
+handler.register = false
 export default handler

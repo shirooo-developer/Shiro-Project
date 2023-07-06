@@ -38,7 +38,7 @@ handler.help = ['changeguildname <nama baru>', 'ubahnamaguild <nama baru>']
 handler.tags = ['guild']
 handler.command = /^(change|ubah)namaguild$/i
 handler.limit = true
-handler.register = true
+handler.register = false
 handler.group = true
 
 export default handler

@@ -77,5 +77,5 @@ const listMessage = {
 handler.help = ['jualan']
 handler.tags = ['rpg']
 handler.command = /^(jualan)/i
-handler.register = true
+handler.register = false
 export default handler

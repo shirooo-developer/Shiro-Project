@@ -107,7 +107,7 @@ await conn.sendMessage(m.chat, listMessage, { quoted: fakes, mentions: await con
 handler.help = ['grouptime <open/close> <number>']
 handler.tags = ['group']
 handler.command = /^(grouptime|gctime)$/i
-handler.register = true
+handler.register = false
 handler.limit = 1
 handler.botAdmin = true
 handler.group = true 

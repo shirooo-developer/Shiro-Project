@@ -66,20 +66,20 @@ const sections = [
    {
 	title: "𝗘𝗤𝗨𝗜𝗣𝗠𝗘𝗡𝗧 𝗟𝗘𝗩𝗘𝗟",
 	rows: [
-	    {title: "Kamera", rowId: ".equipment kamera", description: "Camera Tiers"},
-	    {title: "Pencahayaan", rowId: ".equipment pencahayaan", description: "Lighting Tiers"},
-	    {title: "Tripod", rowId: ".equipment tripod", description: "Tripods Tiers"},
-	    {title: "Software Editing", rowId: ".equipment se", description: "Software Editing Tiers"},
-	    {title: "Internet", rowId: ".equipment internet", description: "Internet Tiers"},
-	    {title: "Motherboard", rowId: ".equipment mb", description: "Motherboard Tiers"},
-	    {title: "Prosesor (CPU)", rowId: ".equipment cpu", description: "CPU Tiers"},
-	    {title: "Kartu Grafis (GPU)", rowId: ".equipment gpu", description: "GPU Tiers"},
-	    {title: "RAM", rowId: ".equipment ram", description: "RAM Tiers"},
-	    {title: "SSDs", rowId: ".equipment ssds", description: "SSDs Tiers"},
-	    {title: "Monitor", rowId: ".equipment monitor", description: "Monitor Tiers"},
-	    {title: "Headphone", rowId: ".equipment hp", description: "Headphone Tiers"},
-	    {title: "Mouse & Keyboard", rowId: ".equipment mak", description: "Mouse & Keyboard Tiers"},
-	    {title: "According To Type", rowId: ".equipment att", description: "Mouse & Keyboard Tiers"},
+	    {title: "Kamera", rowId: ".equipment2 kamera", description: "Camera Tiers"},
+	    {title: "Pencahayaan", rowId: ".equipment2 pencahayaan", description: "Lighting Tiers"},
+	    {title: "Tripod", rowId: ".equipment2 tripod", description: "Tripods Tiers"},
+	    {title: "Software Editing", rowId: ".equipment2 se", description: "Software Editing Tiers"},
+	    {title: "Internet", rowId: ".equipment2 internet", description: "Internet Tiers"},
+	    {title: "Motherboard", rowId: ".equipment2 mb", description: "Motherboard Tiers"},
+	    {title: "Prosesor (CPU)", rowId: ".equipment2 cpu", description: "CPU Tiers"},
+	    {title: "Kartu Grafis (GPU)", rowId: ".equipment2 gpu", description: "GPU Tiers"},
+	    {title: "RAM", rowId: ".equipment2 ram", description: "RAM Tiers"},
+	    {title: "SSDs", rowId: ".equipment2 ssds", description: "SSDs Tiers"},
+	    {title: "Monitor", rowId: ".equipment2 monitor", description: "Monitor Tiers"},
+	    {title: "Headphone", rowId: ".equipment2 hp", description: "Headphone Tiers"},
+	    {title: "Mouse & Keyboard", rowId: ".equipment2 mak", description: "Mouse & Keyboard Tiers"},
+	    {title: "According To Type", rowId: ".equipment2 att", description: "Mouse & Keyboard Tiers"},
 	]
     },
 ]
@@ -93,7 +93,7 @@ const listMessage = {
 }
 
   try {
-    if (/equipment|Crafting/i.test(command)) {
+    if (/equipment2|Crafting/i.test(command)) {
       const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
         switch (type) {
           case 'kamera':
@@ -262,8 +262,8 @@ const listMessage = {
   }
 }
 
-handler.help = ['equipment']
+handler.help = ['equipment2']
 handler.tags = ['rpg']
-handler.command = /^(equipment)/i
+handler.command = /^(equipment2)/i
 handler.register = false
 export default handler
